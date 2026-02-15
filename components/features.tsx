@@ -1,41 +1,41 @@
-import { Cpu, Brain, Layers, Zap, GitBranch, Box } from "lucide-react"
+import { Globe, Brain, Layers, Zap, FileCode, Box } from "lucide-react"
 
 const features = [
+  {
+    icon: Globe,
+    title: "Multi-Language Bridge",
+    description:
+      "Define your model once in .sw, then run it from Python, Rust, JavaScript/WASM, C/C++, or Java. Thin bindings delegate all execution to the Shrew core.",
+  },
+  {
+    icon: FileCode,
+    title: "Declarative .sw Format",
+    description:
+      "A language-agnostic DSL that separates model specification from execution. Architecture, hyperparams, training config — all in one readable file.",
+  },
   {
     icon: Brain,
     title: "Automatic Differentiation",
     description:
-      "Eager-mode reverse AD like PyTorch. Every tensor records its graph; backward() does topological sort + chain rule across all ops.",
+      "Eager-mode reverse AD. Every tensor records its graph; backward() does topological sort + chain rule across all ops, just like PyTorch.",
   },
   {
     icon: Layers,
     title: "Full NN Layer Stack",
     description:
-      "Linear, Conv2d, LSTM, GRU, LayerNorm, MultiHeadAttention, TransformerBlock, Embedding, BatchNorm2d, and more.",
+      "Linear, Conv2d, LSTM, GRU, LayerNorm, MultiHeadAttention, TransformerBlock, Embedding, BatchNorm2d — and growing.",
   },
   {
     icon: Zap,
-    title: "SIMD-Accelerated CPU",
+    title: "SIMD-Accelerated Runtime",
     description:
-      "GEMM crate for AVX2/AVX-512/FMA matrix multiply, rayon parallelism, and contiguous fast-paths for all elementwise ops.",
-  },
-  {
-    icon: GitBranch,
-    title: "Declarative .sw IR",
-    description:
-      "Define models in language-agnostic .sw files. The compiler handles lexing, parsing, lowering, validation, shape inference, and optimization.",
+      "Rust core with GEMM-accelerated matmul (AVX2/AVX-512/FMA), rayon parallelism, and contiguous fast-paths for maximum CPU performance.",
   },
   {
     icon: Box,
-    title: "Modular Crate Design",
+    title: "Modular Architecture",
     description:
-      "shrew-core, shrew-cpu, shrew-nn, shrew-optim, shrew-ir, shrew-data — each concern is independent and swappable.",
-  },
-  {
-    icon: Cpu,
-    title: "Train & Deploy Anywhere",
-    description:
-      "Define a transformer in .sw once, train it in Python with its data ecosystem, deploy in Rust/WASM/mobile with zero transpilation.",
+      "shrew-core, shrew-cpu, shrew-nn, shrew-optim, shrew-ir, shrew-data — each concern is its own crate, independently swappable and extendable.",
   },
 ]
 
@@ -48,10 +48,10 @@ export function Features() {
             Features
           </span>
           <h2 className="mt-3 text-balance text-3xl font-bold text-foreground md:text-4xl">
-            Everything you need for deep learning in Rust
+            One spec, every ecosystem
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-pretty text-muted-foreground">
-            A complete tensor system, autograd engine, neural network layers, optimizers, schedulers, and a declarative IR — all written from scratch.
+            Shrew bridges the gap between languages. Write your model definition once, and let the runtime handle training and deployment across Python, Rust, JS, C++, and more.
           </p>
         </div>
 

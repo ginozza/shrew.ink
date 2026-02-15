@@ -26,10 +26,10 @@ export function Roadmap() {
             Roadmap
           </span>
           <h2 className="mt-3 text-balance text-3xl font-bold text-foreground md:text-4xl">
-            Built methodically, phase by phase
+            From runtime to universal bridge
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-pretty text-muted-foreground">
-            From tensor primitives to a full training runtime — and GPU support is next.
+            The Rust core is built. Next: language bindings to connect Python, JS, C++, and WASM to the same .sw model spec.
           </p>
         </div>
 

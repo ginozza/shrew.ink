@@ -7,9 +7,9 @@ const _inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 const _jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-jetbrains-mono' })
 
 export const metadata: Metadata = {
-  title: 'Shrew — A Deep Learning Runtime for Rust',
-  description: 'A modular deep learning runtime written from scratch in Rust with a declarative, multi-language Intermediate Representation. Define once in .sw, train anywhere, deploy everywhere.',
-  keywords: ['deep learning', 'rust', 'machine learning', 'neural network', 'autograd', 'tensor', 'runtime'],
+  title: 'Shrew — The Universal Deep Learning Bridge',
+  description: 'A DSL and runtime that bridges deep learning across every language. Define models once in .sw files, train in Python, deploy in Rust, JS, C++, or WASM. One spec, every ecosystem.',
+  keywords: ['deep learning', 'DSL', 'multi-language', 'machine learning', 'neural network', 'interoperability', 'python', 'rust', 'javascript', 'wasm'],
 }
 
 export const viewport: Viewport = {

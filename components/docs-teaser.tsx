@@ -10,7 +10,7 @@ export function DocsTeaser() {
           </div>
           <h2 className="text-2xl font-bold text-foreground md:text-3xl">Documentation</h2>
           <p className="mt-4 text-muted-foreground">
-            Comprehensive guides, API references, and tutorials are coming soon.
+            Guides for the .sw DSL syntax, language bindings, API references, and tutorials are coming soon.
             In the meantime, explore the examples in the repository.
           </p>
           <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-2">

@@ -18,14 +18,14 @@ export function Performance() {
               Performance
             </span>
             <h2 className="mt-3 text-balance text-3xl font-bold text-foreground md:text-4xl">
-              SIMD-accelerated CPU kernels
+              Fast Rust core, every language benefits
             </h2>
             <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
-              The CPU backend leverages the{" "}
+              Every language binding delegates execution to the same SIMD-accelerated Rust runtime.{" "}
               <code className="rounded bg-secondary px-1.5 py-0.5 font-mono text-sm text-foreground">gemm</code>{" "}
-              crate for automatic AVX2/AVX-512/FMA detection and{" "}
+              handles AVX2/AVX-512/FMA matmul,{" "}
               <code className="rounded bg-secondary px-1.5 py-0.5 font-mono text-sm text-foreground">rayon</code>{" "}
-              for parallel batched operations. Contiguous tensors take an optimized fast-path that bypasses stride calculations.
+              parallelizes batched ops. Python, JS, or C++ — same native speed.
             </p>
 
             <div className="mt-8 grid grid-cols-3 gap-6">

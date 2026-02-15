@@ -4,34 +4,7 @@ import { useState } from "react"
 
 const tabs = [
   {
-    label: "Quick Start",
-    filename: "main.rs",
-    code: `use shrew::prelude::*;
-
-fn main() -> shrew::Result<()> {
-    let dev = CpuDevice;
-
-    // Create tensors — broadcasting works automatically
-    let a = CpuTensor::from_f64_slice(
-        &[1.0, 2.0, 3.0], (3, 1), DType::F64, &dev
-    )?;
-    let b = CpuTensor::from_f64_slice(
-        &[10.0, 20.0], (1, 2), DType::F64, &dev
-    )?;
-    let c = a.add(&b)?;  // [3,1] + [1,2] → [3,2]
-
-    // Autograd: compute gradients
-    let w = CpuTensor::rand((3, 3), DType::F64, &dev)?
-        .set_variable();
-    let input = CpuTensor::rand((2, 3), DType::F64, &dev)?;
-    let loss = input.matmul(&w)?.sum_all()?;
-    let grads = loss.backward()?;  // Reverse-mode AD
-
-    Ok(())
-}`,
-  },
-  {
-    label: ".sw Format",
+    label: ".sw Model Spec",
     filename: "tiny_gpt.sw",
     code: `@model {
     name: "TinyGPT";
@@ -75,45 +48,82 @@ fn main() -> shrew::Result<()> {
 }`,
   },
   {
-    label: "Transformer",
-    filename: "transformer.rs",
+    label: "Use from Rust",
+    filename: "main.rs",
     code: `use shrew::prelude::*;
+use shrew::exec::{load_program, RuntimeConfig};
 
 fn main() -> shrew::Result<()> {
-    let dev = CpuDevice;
-
-    // Build a full Transformer block
-    let block = TransformerBlock::<CpuBackend>::new(
-        64,   // d_model
-        4,    // num_heads
-        256,  // d_ff
-        true, // causal
-        DType::F64, &dev,
+    // Load the .sw model spec — same file used by all languages
+    let config = RuntimeConfig::default()
+        .with_dtype(DType::F32);
+    let exec = load_program::<CpuBackend>(
+        include_str!("tiny_gpt.sw"),
+        CpuDevice,
+        config,
     )?;
 
     let x = CpuTensor::rand(
-        (2, 10, 64), DType::F64, &dev
+        (2, 512), DType::F32, &CpuDevice
     )?;
-    let y = block.forward(&x)?; // [2,10,64] → [2,10,64]
+    let mut inputs = std::collections::HashMap::new();
+    inputs.insert("tokens".to_string(), x);
 
-    // Train with AdamW + cosine warmup
-    let mut optim = AdamW::new(
-        block.parameters(),
-        AdamWConfig { lr: 3e-4, ..Default::default() }
-    );
-    let scheduler = CosineWarmupLR::new(
-        &optim, 100, 1000
-    );
+    let result = exec.run("Forward", &inputs)?;
+    let logits = result.get("logits").unwrap();
 
-    for epoch in 0..1000 {
-        let output = block.forward(&x)?;
-        let loss = cross_entropy_loss(&output, &targets)?;
-        let grads = loss.backward()?;
-        optim.step(&grads)?;
-        scheduler.step();
-    }
-
+    println!("Output shape: {:?}", logits.dims());
     Ok(())
+}`,
+  },
+  {
+    label: "Use from Python",
+    filename: "train.py",
+    code: `import shrew
+
+# Load the same .sw file — zero code duplication
+model = shrew.load("tiny_gpt.sw")
+
+# Python handles the data ecosystem
+import numpy as np
+tokens = np.random.randint(0, 50257, (64, 512))
+
+# The Rust runtime handles all execution
+logits = model.forward(tokens=tokens)
+print(f"Output shape: {logits.shape}")
+
+# Train with Python's data, Shrew's runtime
+trainer = shrew.Trainer("tiny_gpt.sw")
+trainer.fit(
+    train_data=dataset,
+    epochs=20,
+    batch_size=64,
+)
+
+# Export: deploy the same model in any language
+trainer.save("tiny_gpt.shrew")`,
+  },
+  {
+    label: "Use from JS",
+    filename: "inference.js",
+    code: `import { Shrew } from "shrew-wasm";
+
+// Same .sw file — runs everywhere via WASM
+const model = await Shrew.load("tiny_gpt.sw");
+
+// Run inference in the browser or Node.js
+const tokens = new Int32Array(512).fill(0);
+const logits = model.forward({ tokens });
+
+console.log("Output shape:", logits.shape);
+
+// Deploy as a serverless function
+export default async function handler(req) {
+    const { tokens } = await req.json();
+    const result = model.forward({ tokens });
+    return Response.json({
+        logits: result.toArray()
+    });
 }`,
   },
 ]
@@ -126,25 +136,26 @@ export function CodeShowcase() {
       <div className="mx-auto max-w-7xl px-6">
         <div className="text-center">
           <span className="text-sm font-semibold uppercase tracking-widest text-primary">
-            Code Examples
+            How It Works
           </span>
           <h2 className="mt-3 text-balance text-3xl font-bold text-foreground md:text-4xl">
-            Elegant API, powerful results
+            Define once, use everywhere
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-pretty text-muted-foreground">
-            From tensors to transformers, Shrew keeps your code clean and your models fast.
+            Write your model spec in <code className="rounded bg-secondary px-1.5 py-0.5 font-mono text-xs text-foreground">.sw</code> once,
+            then load and run it from any language. No transpilation, no code duplication.
           </p>
         </div>
 
         <div className="mx-auto mt-12 max-w-4xl">
           <div className="overflow-hidden rounded-xl border border-border bg-card">
             {/* Tab bar */}
-            <div className="flex border-b border-border">
+            <div className="flex overflow-x-auto border-b border-border">
               {tabs.map((tab, i) => (
                 <button
                   key={tab.label}
                   onClick={() => setActiveTab(i)}
-                  className={`px-5 py-3 text-sm font-medium transition-colors ${
+                  className={`shrink-0 px-5 py-3 text-sm font-medium transition-colors ${
                     activeTab === i
                       ? "border-b-2 border-primary bg-secondary/50 text-foreground"
                       : "text-muted-foreground hover:text-foreground"
