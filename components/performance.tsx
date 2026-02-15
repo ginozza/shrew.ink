@@ -9,12 +9,12 @@ const benchmarks = [
 
 export function Performance() {
   return (
-    <section id="performance" className="py-24 md:py-32">
+    <section id="performance" className="relative z-10 py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-6">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           {/* Left column */}
           <div>
-            <span className="text-sm font-semibold uppercase tracking-widest text-primary">
+            <span className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">
               Performance
             </span>
             <h2 className="mt-3 text-balance text-3xl font-bold text-foreground md:text-4xl">
@@ -45,7 +45,7 @@ export function Performance() {
           </div>
 
           {/* Right column — benchmark bars */}
-          <div className="rounded-xl border border-border bg-card p-6">
+          <div className="rounded-xl border border-border bg-card/80 p-6 backdrop-blur-sm">
             <p className="mb-6 text-sm font-medium text-muted-foreground">
               CPU Benchmark — release mode (AMD/Intel)
             </p>
@@ -57,11 +57,11 @@ export function Performance() {
                       {b.operation}{" "}
                       <span className="text-muted-foreground">{b.size}</span>
                     </span>
-                    <span className="font-mono text-primary">{b.time}</span>
+                    <span className="font-mono text-foreground">{b.time}</span>
                   </div>
                   <div className="h-2 overflow-hidden rounded-full bg-secondary">
                     <div
-                      className="h-full rounded-full bg-primary transition-all"
+                      className="h-full rounded-full bg-foreground/70 transition-all"
                       style={{ width: `${Math.min(b.bar * 2.5, 100)}%` }}
                     />
                   </div>

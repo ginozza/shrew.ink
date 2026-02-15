@@ -1,16 +1,13 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Github } from "lucide-react"
-import { CopyButton } from "@/components/copy-button"
+import { DynamicInstall } from "@/components/dynamic-install"
 
 export function GetStarted() {
   return (
-    <section id="get-started" className="py-24 md:py-32">
+    <section id="get-started" className="relative z-10 py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-6">
-        <div className="relative overflow-hidden rounded-2xl border border-primary/20 bg-card p-8 md:p-16">
-          {/* Glow */}
-          <div className="pointer-events-none absolute -right-20 -top-20 h-80 w-80 rounded-full bg-primary/5 blur-3xl" />
-
+        <div className="relative overflow-hidden rounded-2xl border border-foreground/10 bg-card/80 p-8 backdrop-blur-sm md:p-16">
           <div className="relative flex flex-col items-center text-center">
             <h2 className="text-balance text-3xl font-bold text-foreground md:text-4xl">
               Ready to bridge your deep learning?
@@ -20,7 +17,7 @@ export function GetStarted() {
             </p>
 
             <div className="mt-8">
-              <CopyButton text="cargo add shrew" />
+              <DynamicInstall />
             </div>
 
             <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row">

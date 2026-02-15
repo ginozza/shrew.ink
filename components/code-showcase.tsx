@@ -132,10 +132,10 @@ export function CodeShowcase() {
   const [activeTab, setActiveTab] = useState(0)
 
   return (
-    <section id="examples" className="py-24 md:py-32">
+    <section id="examples" className="relative z-10 py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-6">
         <div className="text-center">
-          <span className="text-sm font-semibold uppercase tracking-widest text-primary">
+          <span className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">
             How It Works
           </span>
           <h2 className="mt-3 text-balance text-3xl font-bold text-foreground md:text-4xl">
@@ -148,7 +148,7 @@ export function CodeShowcase() {
         </div>
 
         <div className="mx-auto mt-12 max-w-4xl">
-          <div className="overflow-hidden rounded-xl border border-border bg-card">
+          <div className="overflow-hidden rounded-xl border border-border bg-card/80 backdrop-blur-sm">
             {/* Tab bar */}
             <div className="flex overflow-x-auto border-b border-border">
               {tabs.map((tab, i) => (
@@ -157,7 +157,7 @@ export function CodeShowcase() {
                   onClick={() => setActiveTab(i)}
                   className={`shrink-0 px-5 py-3 text-sm font-medium transition-colors ${
                     activeTab === i
-                      ? "border-b-2 border-primary bg-secondary/50 text-foreground"
+                      ? "border-b-2 border-foreground bg-secondary/50 text-foreground"
                       : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
@@ -168,9 +168,9 @@ export function CodeShowcase() {
 
             {/* File name bar */}
             <div className="flex items-center gap-2 border-b border-border/50 bg-secondary/30 px-5 py-2">
-              <div className="h-3 w-3 rounded-full bg-destructive/60" />
-              <div className="h-3 w-3 rounded-full bg-yellow-500/60" />
-              <div className="h-3 w-3 rounded-full bg-green-500/60" />
+              <div className="h-3 w-3 rounded-full bg-foreground/20" />
+              <div className="h-3 w-3 rounded-full bg-foreground/15" />
+              <div className="h-3 w-3 rounded-full bg-foreground/10" />
               <span className="ml-2 font-mono text-xs text-muted-foreground">
                 {tabs[activeTab].filename}
               </span>
