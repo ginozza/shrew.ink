@@ -22,7 +22,7 @@ export function Footer() {
             Examples
           </Link>
           <a
-            href="https://github.com"
+            href="https://github.com/ginozza/shrew"
             target="_blank"
             rel="noopener noreferrer"
             className="text-muted-foreground transition-colors hover:text-foreground"
@@ -32,9 +32,10 @@ export function Footer() {
           </a>
         </nav>
 
-        <p className="text-sm text-muted-foreground">
-          MIT / Apache-2.0
-        </p>
+        <div className="flex flex-col items-center gap-1 md:items-end">
+          <p className="text-sm text-muted-foreground">Apache-2.0</p>
+          <p className="text-xs text-muted-foreground/60">© {new Date().getFullYear()} ginozza</p>
+        </div>
       </div>
     </footer>
   )
