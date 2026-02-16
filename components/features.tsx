@@ -1,41 +1,59 @@
-import { Globe, Brain, Layers, Zap, FileCode, Box } from "lucide-react"
+import { Cpu, Brain, Layers, Zap, FileCode, Box, Gpu, BarChart3, Database, Settings2 } from "lucide-react"
 
 const features = [
   {
-    icon: Globe,
-    title: "Multi-Language Bridge",
-    description:
-      "Define your model once in .sw, then run it from Python, Rust, JavaScript/WASM, C/C++, or Java. Thin bindings delegate all execution to the Shrew core.",
-  },
-  {
-    icon: FileCode,
-    title: "Declarative .sw Format",
-    description:
-      "A language-agnostic DSL that separates model specification from execution. Architecture, hyperparams, training config \u2014 all in one readable file.",
-  },
-  {
     icon: Brain,
-    title: "Automatic Differentiation",
+    title: "Reverse-Mode Autograd",
     description:
-      "Eager-mode reverse AD. Every tensor records its graph; backward() does topological sort + chain rule across all ops, just like PyTorch.",
+      "Eager automatic differentiation — every op records its graph, backward() does topological sort + chain rule. Gradient paths cover matmul, reshape, transpose, affine, cat, and 30+ ops.",
   },
   {
     icon: Layers,
-    title: "Full NN Layer Stack",
+    title: "Full Neural Network Stack",
     description:
-      "Linear, Conv2d, LSTM, GRU, LayerNorm, MultiHeadAttention, TransformerBlock, Embedding, BatchNorm2d \u2014 and growing.",
+      "Linear, Conv1d/2d, RNN, LSTM, GRU, MultiHeadAttention, TransformerBlock, BatchNorm2d, LayerNorm, GroupNorm, RMSNorm, Embedding, Dropout, and 7 loss functions.",
   },
   {
     icon: Zap,
-    title: "SIMD-Accelerated Runtime",
+    title: "CUDA GPU Backend",
     description:
-      "Rust core with GEMM-accelerated matmul (AVX2/AVX-512/FMA), rayon parallelism, and contiguous fast-paths for maximum CPU performance.",
+      "NVIDIA GPU backend via cudarc with cuBLAS matmul, custom PTX kernels, memory pool with allocation reuse, and mixed-precision training (F16/BF16 ↔ F32).",
+  },
+  {
+    icon: Cpu,
+    title: "SIMD-Accelerated CPU",
+    description:
+      "gemm-accelerated matmul (AVX2/AVX-512/FMA), rayon parallel ops, contiguous fast-paths bypassing stride calculations. Same performance as hand-tuned C.",
+  },
+  {
+    icon: FileCode,
+    title: ".sw Intermediate Representation",
+    description:
+      "Declarative model specification format with lexer, parser, AST, Graph IR, shape inference, and optimization passes (DCE, CSE, constant folding, operator fusion).",
+  },
+  {
+    icon: Settings2,
+    title: "JIT Compiler",
+    description:
+      "JitExecutor compiles IR graphs into flat instruction tapes with pre-allocated memory slots and value lifetime tracking. No re-interpretation at runtime.",
   },
   {
     icon: Box,
-    title: "Modular Architecture",
+    title: "Optimizers & Schedulers",
     description:
-      "shrew-core, shrew-cpu, shrew-nn, shrew-optim, shrew-ir, shrew-data \u2014 each concern is its own crate, independently swappable and extendable.",
+      "SGD (momentum, weight decay), Adam, AdamW, RAdam, RMSProp. LR schedulers: StepLR, CosineAnnealing, CosineWarmup, ReduceLROnPlateau. Gradient clipping + EMA.",
+  },
+  {
+    icon: Database,
+    title: "Quantization & ONNX",
+    description:
+      "INT8/INT4 post-training quantization (symmetric/asymmetric, per-tensor/per-channel). ONNX export/import (opset 17) with zero-dependency protobuf.",
+  },
+  {
+    icon: BarChart3,
+    title: "Training & Distributed",
+    description:
+      "Trainer with validation, early stopping, metric tracking. DataParallel, PipelineParallel, MixedPrecisionTrainer with dynamic loss scaling.",
   },
 ]
 
@@ -48,10 +66,10 @@ export function Features() {
             Features
           </span>
           <h2 className="mt-3 text-balance text-3xl font-bold text-foreground md:text-4xl">
-            One spec, every ecosystem
+            The runtime powering the bridge
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-pretty text-muted-foreground">
-            Shrew bridges the gap between languages. Write your model definition once, and let the runtime handle training and deployment across Python, Rust, JS, C++, and more.
+            A Rust-powered runtime with tensors, autograd, GPU acceleration, and a JIT compiler. The engine behind the .sw DSL — so your models run everywhere without being tied to any single technology.
           </p>
         </div>
 

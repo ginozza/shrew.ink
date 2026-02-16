@@ -5,7 +5,7 @@ import { DynamicInstall } from "@/components/dynamic-install"
 import { DysonSphere } from "@/components/dyson-sphere"
 import { ShrewLogo } from "@/components/shrew-logo"
 
-const languages = ["Python", "Rust", "JavaScript", "C/C++", "WASM", "Java"]
+const languages = ["Python", "Rust", "C/C++", "JavaScript", "WASM", "Java"]
 
 export function Hero() {
   return (
@@ -20,7 +20,7 @@ export function Hero() {
           {/* Badge */}
           <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-foreground/10 bg-foreground/5 px-4 py-1.5">
             <span className="h-1.5 w-1.5 rounded-full bg-foreground" />
-            <span className="text-xs font-medium text-foreground/80">One model spec. Every language.</span>
+            <span className="text-xs font-medium text-foreground/80">One model. Every language. Zero friction.</span>
           </div>
 
           {/* Logo */}
@@ -37,13 +37,13 @@ export function Hero() {
 
           {/* Subtitle */}
           <p className="mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-muted-foreground md:text-xl">
-            Shrew is a DSL that connects deep learning across every ecosystem.
+            Shrew is a runtime and DSL that decouples deep learning from any single technology.
             Define your model once in{" "}
-            <code className="rounded bg-secondary px-1.5 py-0.5 font-mono text-sm text-foreground">.sw</code>{" "}
-            files, then train in Python, deploy in Rust, JS, C++, or WASM.
+            <code className="rounded bg-secondary px-1.5 py-0.5 font-mono text-sm text-foreground">.sw</code>,
+            then train and deploy it from Python, Rust, JavaScript, C++, or any language in your stack.
           </p>
 
-          {/* Language pills */}
+          {/* Feature pills */}
           <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
             {languages.map((lang) => (
               <span

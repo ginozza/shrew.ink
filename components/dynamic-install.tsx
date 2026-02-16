@@ -5,10 +5,8 @@ import { Copy, Check } from "lucide-react"
 
 const commands = [
   { lang: "Rust", prefix: "$", cmd: "cargo add shrew" },
-  { lang: "Python", prefix: "$", cmd: "pip install shrew" },
-  { lang: "JavaScript", prefix: "$", cmd: "npm install shrew-wasm" },
-  { lang: "C/C++", prefix: "#", cmd: "include <shrew.h>" },
-  { lang: "Java", prefix: "$", cmd: 'implementation "io.shrew:shrew-jni:0.1"' },
+  { lang: "Python", prefix: "$", cmd: "pip install shrew-python" },
+  { lang: "CLI", prefix: "$", cmd: "cargo install shrew-cli" },
 ]
 
 export function DynamicInstall() {
