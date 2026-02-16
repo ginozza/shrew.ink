@@ -1,10 +1,8 @@
 const benchmarks = [
-  { operation: "matmul", size: "256x256", time: "~370 \u00B5s", bar: 10 },
-  { operation: "matmul", size: "512x512", time: "~3.5 ms", bar: 35 },
+  { operation: "matmul", size: "256×256", time: "~370 µs", bar: 10 },
+  { operation: "matmul", size: "512×512", time: "~3.5 ms", bar: 35 },
   { operation: "add", size: "1M elements", time: "~1.3 ms", bar: 13 },
-  { operation: "exp", size: "1M elements", time: "~1.8 ms", bar: 18 },
-  { operation: "relu", size: "1M elements", time: "~1.0 ms", bar: 10 },
-  { operation: "linear fwd", size: "[64,512]x[512,512]+bias", time: "~3.9 ms", bar: 39 },
+  { operation: "linear fwd", size: "[64,512]×[512,512]+bias", time: "~3.9 ms", bar: 39 },
 ]
 
 export function Performance() {
@@ -18,28 +16,28 @@ export function Performance() {
               Performance
             </span>
             <h2 className="mt-3 text-balance text-3xl font-bold text-foreground md:text-4xl">
-              Fast Rust core, every language benefits
+              Native Rust speed, SIMD-accelerated
             </h2>
             <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
-              Every language binding delegates execution to the same SIMD-accelerated Rust runtime.{" "}
               <code className="rounded bg-secondary px-1.5 py-0.5 font-mono text-sm text-foreground">gemm</code>{" "}
-              handles AVX2/AVX-512/FMA matmul,{" "}
+              provides AVX2/AVX-512/FMA matmul,{" "}
               <code className="rounded bg-secondary px-1.5 py-0.5 font-mono text-sm text-foreground">rayon</code>{" "}
-              parallelizes batched ops. Python, JS, or C++ — same native speed.
+              parallelizes batched ops. Contiguous fast-paths bypass stride calculations.
+              CUDA backend with cuBLAS for GPU acceleration.
             </p>
 
             <div className="mt-8 grid grid-cols-3 gap-6">
               <div>
-                <p className="text-3xl font-bold text-foreground">319</p>
-                <p className="mt-1 text-sm text-muted-foreground">Tests passing</p>
-              </div>
-              <div>
-                <p className="text-3xl font-bold text-foreground">5</p>
+                <p className="text-3xl font-bold text-foreground">7</p>
                 <p className="mt-1 text-sm text-muted-foreground">DType support</p>
               </div>
               <div>
-                <p className="text-3xl font-bold text-foreground">29+</p>
+                <p className="text-3xl font-bold text-foreground">60+</p>
                 <p className="mt-1 text-sm text-muted-foreground">Tensor ops</p>
+              </div>
+              <div>
+                <p className="text-3xl font-bold text-foreground">10</p>
+                <p className="mt-1 text-sm text-muted-foreground">Crates</p>
               </div>
             </div>
           </div>

@@ -5,16 +5,17 @@ const phases = [
   { phase: "1", title: "Core tensor system + CPU backend", status: "done" as const },
   { phase: "2", title: "Autograd — reverse-mode AD", status: "done" as const },
   { phase: "3", title: "NN layers + Optimizers", status: "done" as const },
-  { phase: "3.5", title: "CNN building blocks", status: "done" as const },
+  { phase: "3.5", title: "CNN building blocks (Conv1d/2d, MaxPool, AvgPool)", status: "done" as const },
   { phase: "4", title: "Broadcasting, MHA, TransformerBlock", status: "done" as const },
   { phase: "5", title: ".sw IR format — full pipeline", status: "done" as const },
-  { phase: "6", title: "Executor & Trainer", status: "done" as const },
-  { phase: "7", title: "CUDA GPU backend", status: "planned" as const },
+  { phase: "6", title: "Executor, JIT Compiler & Trainer", status: "done" as const },
+  { phase: "7", title: "CUDA GPU backend (cuBLAS + PTX kernels)", status: "done" as const },
   { phase: "8", title: "Data loading, MNIST examples", status: "done" as const },
   { phase: "8.5", title: "LR schedulers, checkpoints, char-GPT", status: "done" as const },
   { phase: "8.6", title: "GEMM matmul, comparisons, parallelism", status: "done" as const },
-  { phase: "9", title: "Python/JS/WASM bindings", status: "planned" as const },
-  { phase: "10", title: "Quantization, ONNX, distributed", status: "future" as const },
+  { phase: "9", title: "Python bindings (PyO3 + NumPy)", status: "done" as const },
+  { phase: "9.5", title: "Quantization (INT8/INT4), ONNX, distributed training", status: "done" as const },
+  { phase: "10", title: "JS/WASM & C/C++ bindings", status: "planned" as const },
 ]
 
 export function Roadmap() {
@@ -29,7 +30,7 @@ export function Roadmap() {
             From runtime to universal bridge
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-pretty text-muted-foreground">
-            The Rust core is built. Next: language bindings to connect Python, JS, C++, and WASM to the same .sw model spec.
+            v0.1.0 shipped with tensors, autograd, CUDA GPU, neural networks, optimizers, JIT, quantization, ONNX, and Python bindings. Next up: JS/WASM and C/C++ bindings.
           </p>
         </div>
 

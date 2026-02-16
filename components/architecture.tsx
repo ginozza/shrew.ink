@@ -3,35 +3,46 @@ import { ArrowDown } from "lucide-react"
 const crates = [
   {
     name: "shrew-core",
-    description: "Tensor, Shape, DType, Layout, Backend trait, Autograd",
+    description: "Tensor<B>, Shape, DType, Layout, Backend trait, reverse-mode autograd, dynamic symbolic shapes",
   },
   {
     name: "shrew-ir",
-    description: ".sw DSL: Lexer, Parser, AST, Graph IR, Optimization Passes",
+    description: ".sw format: lexer, parser, AST, Graph IR, lowering, validation, shape inference, optimization passes",
   },
   {
     name: "shrew-cpu",
-    description: "CPU kernels, Broadcasting, SIMD-accelerated matmul",
+    description: "CPU backend: SIMD matmul via gemm (AVX2/AVX-512/FMA), parallel ops via rayon, broadcasting",
+  },
+  {
+    name: "shrew-cuda",
+    description: "NVIDIA GPU backend: cuBLAS matmul, custom PTX kernels, memory pool, mixed-precision F16/BF16",
   },
   {
     name: "shrew-nn",
-    description: "Linear, Conv2d, LN, BN, MHA, Transformer, Loss",
+    description: "Linear, Conv1d/2d, RNN/LSTM/GRU, MultiHeadAttention, Transformer, BatchNorm, LayerNorm, losses",
   },
   {
     name: "shrew-optim",
-    description: "SGD, Adam, AdamW, Schedulers, Grad Clip",
+    description: "SGD, Adam, AdamW, RAdam, RMSProp, LR schedulers, gradient clipping, EMA",
   },
   {
     name: "shrew-data",
-    description: "Dataset, DataLoader, MNIST, Transforms",
+    description: "Dataset trait, DataLoader, MNIST, image transforms, async prefetch loader",
+  },
+  {
+    name: "shrew",
+    description: "Facade crate: executor, JIT compiler, trainer, distributed training, quantization, ONNX, profiling",
+  },
+  {
+    name: "shrew-python",
+    description: "Python bindings via PyO3 with NumPy interop (from_numpy, to_numpy)",
   },
 ]
 
-const bindings = [
-  { lang: "Python", tech: "PyO3", status: "Planned" },
-  { lang: "JavaScript", tech: "wasm-bindgen", status: "Planned" },
-  { lang: "C/C++", tech: "cbindgen", status: "Planned" },
-  { lang: "Java", tech: "JNI", status: "Future" },
+const serialization = [
+  { format: ".shrew", description: "Native binary checkpoints" },
+  { format: "Safetensors", description: "HuggingFace compatible" },
+  { format: "ONNX", description: "Opset 17, zero deps" },
 ]
 
 export function Architecture() {
@@ -43,29 +54,36 @@ export function Architecture() {
             Architecture
           </span>
           <h2 className="mt-3 text-balance text-3xl font-bold text-foreground md:text-4xl">
-            The bridge between your model and every language
+            Modular by design
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-pretty text-muted-foreground">
-            Your <code className="rounded bg-secondary px-1 py-0.5 font-mono text-xs text-foreground">.sw</code> file
-            flows through the Shrew pipeline, then thin bindings in each language delegate execution to the Rust runtime core.
+            Each concern is its own crate — independently swappable and extendable.
+            The same <code className="rounded bg-secondary px-1 py-0.5 font-mono text-xs text-foreground">Tensor&lt;B&gt;</code> code
+            runs on CPU and GPU without changes.
           </p>
         </div>
 
         {/* Pipeline flow */}
         <div className="mx-auto mt-16 flex max-w-2xl flex-col items-center gap-3">
-          <PipelineStep label=".sw File" sub="Language-agnostic model spec (architecture, config, training)" />
+          <PipelineStep label=".sw File" sub="Declarative model spec (architecture, config, training)" />
           <ArrowDown className="h-5 w-5 text-foreground/40" />
-          <PipelineStep label="shrew-ir" sub="Lexer \u2192 Parser \u2192 AST \u2192 Graph IR \u2192 Validate \u2192 Optimize" />
+          <PipelineStep label="shrew-ir" sub="Lexer → Parser → AST → Graph IR → Validate → Shape Infer → Optimize" />
           <ArrowDown className="h-5 w-5 text-foreground/40" />
-          <PipelineStep label="Runtime Core" sub="Tensor engine, autograd, NN layers, optimizers (Rust)" />
+          <PipelineStep label="JIT Compiler" sub="Flat instruction tape, pre-allocated memory slots, value lifetime tracking" />
           <ArrowDown className="h-5 w-5 text-foreground/40" />
-          <div className="grid w-full grid-cols-2 gap-2 sm:grid-cols-4">
-            {bindings.map((b) => (
-              <div key={b.lang} className="rounded-lg border border-border bg-card/80 px-3 py-2.5 text-center backdrop-blur-sm">
-                <p className="font-mono text-xs font-bold text-foreground">{b.lang}</p>
-                <p className="mt-0.5 text-[10px] text-muted-foreground">{b.tech}</p>
-              </div>
-            ))}
+          <div className="grid w-full grid-cols-3 gap-2">
+            <div className="rounded-lg border border-border bg-card/80 px-3 py-2.5 text-center backdrop-blur-sm">
+              <p className="font-mono text-xs font-bold text-foreground">CPU</p>
+              <p className="mt-0.5 text-[10px] text-muted-foreground">SIMD + rayon</p>
+            </div>
+            <div className="rounded-lg border border-border bg-card/80 px-3 py-2.5 text-center backdrop-blur-sm">
+              <p className="font-mono text-xs font-bold text-foreground">CUDA</p>
+              <p className="mt-0.5 text-[10px] text-muted-foreground">cuBLAS + PTX</p>
+            </div>
+            <div className="rounded-lg border border-border bg-card/80 px-3 py-2.5 text-center backdrop-blur-sm">
+              <p className="font-mono text-xs font-bold text-foreground">Python</p>
+              <p className="mt-0.5 text-[10px] text-muted-foreground">PyO3 + NumPy</p>
+            </div>
           </div>
         </div>
 
@@ -80,6 +98,19 @@ export function Architecture() {
               <p className="mt-1.5 text-sm text-muted-foreground">{c.description}</p>
             </div>
           ))}
+        </div>
+
+        {/* Serialization formats */}
+        <div className="mx-auto mt-12 max-w-2xl">
+          <p className="mb-4 text-center text-sm font-medium text-muted-foreground">Serialization Formats</p>
+          <div className="grid grid-cols-3 gap-3">
+            {serialization.map((s) => (
+              <div key={s.format} className="rounded-lg border border-border bg-card/80 px-4 py-3 text-center backdrop-blur-sm">
+                <p className="font-mono text-xs font-bold text-foreground">{s.format}</p>
+                <p className="mt-1 text-[11px] text-muted-foreground">{s.description}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
