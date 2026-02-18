@@ -22,6 +22,14 @@ export function Footer() {
             Examples
           </Link>
           <a
+            href="https://docs.shrew.ink"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+          >
+            Docs
+          </a>
+          <a
             href="https://github.com/ginozza/shrew"
             target="_blank"
             rel="noopener noreferrer"

@@ -10,8 +10,11 @@ const features = [
   {
     icon: FileCode,
     title: "Write Once, Run Anywhere",
-    description:
-      "Define your model in a .sw file — a clean, human-readable format that separates architecture from code. No boilerplate, no transpilation headaches.",
+    description: (
+      <>
+        Define your model in a <code className="rounded bg-secondary px-1 py-0.5 font-mono text-xs font-semibold text-foreground">.sw</code> file — a clean, human-readable format that separates architecture from code. No boilerplate, no transpilation headaches.
+      </>
+    ),
   },
   {
     icon: Brain,

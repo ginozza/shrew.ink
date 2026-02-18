@@ -39,7 +39,7 @@ export function Hero() {
           <p className="mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-muted-foreground md:text-xl">
             Shrew is a runtime and DSL that decouples deep learning from any single technology.
             Define your model once in{" "}
-            <code className="rounded bg-secondary px-1.5 py-0.5 font-mono text-sm text-foreground">.sw</code>,
+            <code className="rounded bg-secondary px-1.5 py-0.5 font-mono text-sm font-semibold text-foreground">.sw</code>,
             then train and deploy it from Python, Rust, JavaScript, C++, or any language in your stack.
           </p>
 

@@ -1,4 +1,5 @@
-import { BookOpen, Construction } from "lucide-react"
+import { BookOpen, ArrowRight } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 export function DocsTeaser() {
   return (
@@ -10,12 +11,16 @@ export function DocsTeaser() {
           </div>
           <h2 className="text-2xl font-bold text-foreground md:text-3xl">Documentation</h2>
           <p className="mt-4 text-muted-foreground">
-            Guides for the .sw DSL syntax, language bindings, API references, and tutorials are coming soon.
-            In the meantime, explore the examples in the repository.
+            Guides for the <code className="rounded bg-secondary px-1 py-0.5 font-mono text-xs font-semibold text-foreground">.sw</code> DSL syntax, language bindings, API references, and tutorials.
+            Everything you need to get started with Shrew.
           </p>
-          <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-foreground/10 bg-foreground/5 px-4 py-2">
-            <Construction className="h-4 w-4 text-foreground/70" />
-            <span className="text-sm font-medium text-foreground/70">Coming Soon</span>
+          <div className="mt-6">
+            <Button size="lg" className="gap-2" asChild>
+              <a href="https://docs.shrew.ink" target="_blank" rel="noopener noreferrer">
+                Read the Docs
+                <ArrowRight className="h-4 w-4" />
+              </a>
+            </Button>
           </div>
         </div>
       </div>

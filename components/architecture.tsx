@@ -7,7 +7,7 @@ const crates = [
   },
   {
     name: "shrew-ir",
-    description: "Parses .sw model files into optimized execution graphs.",
+    description: (<>Parses <code className="font-mono font-semibold">.sw</code> model files into optimized execution graphs.</>),
   },
   {
     name: "shrew-cpu",
@@ -93,7 +93,7 @@ export function Architecture() {
               key={c.name}
               className="rounded-xl border border-border bg-card/80 p-5 backdrop-blur-sm transition-all hover:border-foreground/20 hover:scale-[1.02]"
             >
-              <p className="font-mono text-sm font-bold text-foreground">{c.name}</p>
+              <a href={`https://github.com/ginozza/${c.name}`} target="_blank" rel="noopener noreferrer" className="font-mono text-sm font-bold text-foreground underline decoration-foreground/30 underline-offset-2 transition-colors hover:decoration-foreground">{c.name}</a>
               <p className="mt-1.5 text-sm text-muted-foreground">{c.description}</p>
             </div>
           ))}

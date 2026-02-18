@@ -14,7 +14,7 @@ export function GetStarted() {
             </h2>
             <p className="mt-4 max-w-xl text-pretty text-muted-foreground">
               Add Shrew to your Rust project, use the Python bindings, or define models in{" "}
-              <code className="rounded bg-secondary px-1.5 py-0.5 font-mono text-xs text-foreground">.sw</code>{" "}
+              <code className="rounded bg-secondary px-1.5 py-0.5 font-mono text-xs font-semibold text-foreground">.sw</code>{" "}
               files. One runtime, every language.
             </p>
 
@@ -30,10 +30,10 @@ export function GetStarted() {
                 </a>
               </Button>
               <Button variant="outline" size="lg" className="gap-2" asChild>
-                <Link href="#examples">
-                  See Examples
+                <a href="https://docs.shrew.ink" target="_blank" rel="noopener noreferrer">
+                  Read the Docs
                   <ArrowRight className="h-4 w-4" />
-                </Link>
+                </a>
               </Button>
             </div>
 
