@@ -3,39 +3,39 @@ import { ArrowDown } from "lucide-react"
 const crates = [
   {
     name: "shrew-core",
-    description: "Tensor<B>, Shape, DType, Layout, Backend trait, reverse-mode autograd, dynamic symbolic shapes",
+    description: "The foundation: tensors, shapes, data types, and automatic differentiation.",
   },
   {
     name: "shrew-ir",
-    description: ".sw format: lexer, parser, AST, Graph IR, lowering, validation, shape inference, optimization passes",
+    description: "Parses .sw model files into optimized execution graphs.",
   },
   {
     name: "shrew-cpu",
-    description: "CPU backend: SIMD matmul via gemm (AVX2/AVX-512/FMA), parallel ops via rayon, broadcasting",
+    description: "High-performance CPU computations with SIMD acceleration.",
   },
   {
     name: "shrew-cuda",
-    description: "NVIDIA GPU backend: cuBLAS matmul, custom PTX kernels, memory pool, mixed-precision F16/BF16",
+    description: "NVIDIA GPU acceleration with optimized memory management.",
   },
   {
     name: "shrew-nn",
-    description: "Linear, Conv1d/2d, RNN/LSTM/GRU, MultiHeadAttention, Transformer, BatchNorm, LayerNorm, losses",
+    description: "Ready-to-use neural network layers: Linear, Conv, Transformer, and more.",
   },
   {
     name: "shrew-optim",
-    description: "SGD, Adam, AdamW, RAdam, RMSProp, LR schedulers, gradient clipping, EMA",
+    description: "Optimizers (Adam, SGD, etc.) and learning rate schedulers.",
   },
   {
     name: "shrew-data",
-    description: "Dataset trait, DataLoader, MNIST, image transforms, async prefetch loader",
+    description: "Data loading utilities and built-in datasets like MNIST.",
   },
   {
     name: "shrew",
-    description: "Facade crate: executor, JIT compiler, trainer, distributed training, quantization, ONNX, profiling",
+    description: "The main package: JIT compiler, trainer, quantization, ONNX export, and more.",
   },
   {
     name: "shrew-python",
-    description: "Python bindings via PyO3 with NumPy interop (from_numpy, to_numpy)",
+    description: "Python bindings with seamless NumPy integration.",
   },
 ]
 
@@ -57,19 +57,18 @@ export function Architecture() {
             Modular by design
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-pretty text-muted-foreground">
-            Each concern is its own crate — independently swappable and extendable.
-            The same <code className="rounded bg-secondary px-1 py-0.5 font-mono text-xs text-foreground">Tensor&lt;B&gt;</code> code
-            runs on CPU and GPU without changes.
+            Every component is its own independent package — use what you need, swap what you don&apos;t.
+            The same code runs on CPU and GPU without changes.
           </p>
         </div>
 
         {/* Pipeline flow */}
         <div className="mx-auto mt-16 flex max-w-2xl flex-col items-center gap-3">
-          <PipelineStep label=".sw File" sub="Declarative model spec (architecture, config, training)" />
+          <PipelineStep label=".sw Model File" sub="Your model definition — architecture, config, and training in one place" />
           <ArrowDown className="h-5 w-5 text-foreground/40" />
-          <PipelineStep label="shrew-ir" sub="Lexer → Parser → AST → Graph IR → Validate → Shape Infer → Optimize" />
+          <PipelineStep label="shrew-ir" sub="Parse → Optimize → Prepare for execution" />
           <ArrowDown className="h-5 w-5 text-foreground/40" />
-          <PipelineStep label="JIT Compiler" sub="Flat instruction tape, pre-allocated memory slots, value lifetime tracking" />
+          <PipelineStep label="JIT Compiler" sub="Compile into fast, ready-to-run instructions" />
           <ArrowDown className="h-5 w-5 text-foreground/40" />
           <div className="grid w-full grid-cols-3 gap-2">
             <div className="rounded-lg border border-border bg-card/80 px-3 py-2.5 text-center backdrop-blur-sm">

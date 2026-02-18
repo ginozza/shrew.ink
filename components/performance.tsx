@@ -16,14 +16,11 @@ export function Performance() {
               Performance
             </span>
             <h2 className="mt-3 text-balance text-3xl font-bold text-foreground md:text-4xl">
-              Native Rust speed, SIMD-accelerated
+              Blazing Fast by Default
             </h2>
             <p className="mt-4 text-pretty leading-relaxed text-muted-foreground">
-              <code className="rounded bg-secondary px-1.5 py-0.5 font-mono text-sm text-foreground">gemm</code>{" "}
-              provides AVX2/AVX-512/FMA matmul,{" "}
-              <code className="rounded bg-secondary px-1.5 py-0.5 font-mono text-sm text-foreground">rayon</code>{" "}
-              parallelizes batched ops. Contiguous fast-paths bypass stride calculations.
-              CUDA backend with cuBLAS for GPU acceleration.
+              Shrew&apos;s CPU backend uses hardware-level optimizations to squeeze every ounce of
+              performance from your machine. Pair it with the CUDA GPU backend for even more speed.
             </p>
 
             <div className="mt-8 grid grid-cols-3 gap-6">

@@ -1,59 +1,41 @@
-import { Cpu, Brain, Layers, Zap, FileCode, Box, Gpu, BarChart3, Database, Settings2 } from "lucide-react"
+import { Box, FileCode, Brain, Code2, Rocket, Terminal } from "lucide-react"
 
 const features = [
   {
-    icon: Brain,
-    title: "Reverse-Mode Autograd",
+    icon: Box,
+    title: "Modular by Design",
     description:
-      "Eager automatic differentiation — every op records its graph, backward() does topological sort + chain rule. Gradient paths cover matmul, reshape, transpose, affine, cat, and 30+ ops.",
-  },
-  {
-    icon: Layers,
-    title: "Full Neural Network Stack",
-    description:
-      "Linear, Conv1d/2d, RNN, LSTM, GRU, MultiHeadAttention, TransformerBlock, BatchNorm2d, LayerNorm, GroupNorm, RMSNorm, Embedding, Dropout, and 7 loss functions.",
-  },
-  {
-    icon: Zap,
-    title: "CUDA GPU Backend",
-    description:
-      "NVIDIA GPU backend via cudarc with cuBLAS matmul, custom PTX kernels, memory pool with allocation reuse, and mixed-precision training (F16/BF16 ↔ F32).",
-  },
-  {
-    icon: Cpu,
-    title: "SIMD-Accelerated CPU",
-    description:
-      "gemm-accelerated matmul (AVX2/AVX-512/FMA), rayon parallel ops, contiguous fast-paths bypassing stride calculations. Same performance as hand-tuned C.",
+      "Use only what you need. Pick individual crates like shrew-core for tensors, shrew-cuda for GPU, or shrew-nn for layers — each works on its own.",
   },
   {
     icon: FileCode,
-    title: ".sw Intermediate Representation",
+    title: "Write Once, Run Anywhere",
     description:
-      "Declarative model specification format with lexer, parser, AST, Graph IR, shape inference, and optimization passes (DCE, CSE, constant folding, operator fusion).",
+      "Define your model in a .sw file — a clean, human-readable format that separates architecture from code. No boilerplate, no transpilation headaches.",
   },
   {
-    icon: Settings2,
-    title: "JIT Compiler",
+    icon: Brain,
+    title: "Rust Safety, Familiar Feel",
     description:
-      "JitExecutor compiles IR graphs into flat instruction tapes with pre-allocated memory slots and value lifetime tracking. No re-interpretation at runtime.",
+      "Eager-mode autograd with an intuitive API, plus Rust's type safety and fearless concurrency. Catch shape bugs at compile time, not at 3am.",
   },
   {
-    icon: Box,
-    title: "Optimizers & Schedulers",
+    icon: Code2,
+    title: "Python Native, Rust Powered",
     description:
-      "SGD (momentum, weight decay), Adam, AdamW, RAdam, RMSProp. LR schedulers: StepLR, CosineAnnealing, CosineWarmup, ReduceLROnPlateau. Gradient clipping + EMA.",
+      "Research in Python, deploy in Rust — seamlessly. Zero-copy NumPy interop and a familiar API make the transition painless.",
   },
   {
-    icon: Database,
-    title: "Quantization & ONNX",
+    icon: Rocket,
+    title: "Deploy Anywhere",
     description:
-      "INT8/INT4 post-training quantization (symmetric/asymmetric, per-tensor/per-channel). ONNX export/import (opset 17) with zero-dependency protobuf.",
+      "Small binaries, minimal dependencies, and native quantization (INT8/INT4). From cloud servers to edge devices, Shrew goes where you need it.",
   },
   {
-    icon: BarChart3,
-    title: "Training & Distributed",
+    icon: Terminal,
+    title: "Built-in CLI Tools",
     description:
-      "Trainer with validation, early stopping, metric tracking. DataParallel, PipelineParallel, MixedPrecisionTrainer with dynamic loss scaling.",
+      "Inspect, validate, and benchmark your models from the command line. Run shrew dump, validate, bench, or info — no extra setup required.",
   },
 ]
 
@@ -66,10 +48,10 @@ export function Features() {
             Features
           </span>
           <h2 className="mt-3 text-balance text-3xl font-bold text-foreground md:text-4xl">
-            The runtime powering the bridge
+            Why choose Shrew
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-pretty text-muted-foreground">
-            A Rust-powered runtime with tensors, autograd, GPU acceleration, and a JIT compiler. The engine behind the .sw DSL — so your models run everywhere without being tied to any single technology.
+            Built from the ground up in Rust for performance, flexibility, and ease of use.
           </p>
         </div>
 

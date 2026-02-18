@@ -181,8 +181,7 @@ export function CodeShowcase() {
             See it in action
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-pretty text-muted-foreground">
-            From tensor operations and autograd to training transformers and quantizing models.
-            Real API examples from the framework.
+            Real examples showing how Shrew works — from basic tensor math to training a GPT model.
           </p>
         </div>
 
@@ -194,11 +193,10 @@ export function CodeShowcase() {
                 <button
                   key={tab.label}
                   onClick={() => setActiveTab(i)}
-                  className={`shrink-0 px-5 py-3 text-sm font-medium transition-colors ${
-                    activeTab === i
+                  className={`shrink-0 px-5 py-3 text-sm font-medium transition-colors ${activeTab === i
                       ? "border-b-2 border-[#61afef] bg-[#282c34] text-[#abb2bf]"
                       : "text-[#5c6370] hover:text-[#abb2bf]"
-                  }`}
+                    }`}
                 >
                   {tab.label}
                 </button>

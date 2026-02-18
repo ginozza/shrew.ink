@@ -1,20 +1,20 @@
 import { Check, Clock, ArrowRight } from "lucide-react"
 
 const phases = [
-  { phase: "0", title: "Project scaffolding", status: "done" as const },
-  { phase: "1", title: "Core tensor system + CPU backend", status: "done" as const },
-  { phase: "2", title: "Autograd — reverse-mode AD", status: "done" as const },
-  { phase: "3", title: "NN layers + Optimizers", status: "done" as const },
-  { phase: "3.5", title: "CNN building blocks (Conv1d/2d, MaxPool, AvgPool)", status: "done" as const },
-  { phase: "4", title: "Broadcasting, MHA, TransformerBlock", status: "done" as const },
-  { phase: "5", title: ".sw IR format — full pipeline", status: "done" as const },
-  { phase: "6", title: "Executor, JIT Compiler & Trainer", status: "done" as const },
-  { phase: "7", title: "CUDA GPU backend (cuBLAS + PTX kernels)", status: "done" as const },
-  { phase: "8", title: "Data loading, MNIST examples", status: "done" as const },
-  { phase: "8.5", title: "LR schedulers, checkpoints, char-GPT", status: "done" as const },
-  { phase: "8.6", title: "GEMM matmul, comparisons, parallelism", status: "done" as const },
-  { phase: "9", title: "Python bindings (PyO3 + NumPy)", status: "done" as const },
-  { phase: "9.5", title: "Quantization (INT8/INT4), ONNX, distributed training", status: "done" as const },
+  { phase: "0", title: "Project setup", status: "done" as const },
+  { phase: "1", title: "Core tensor system", status: "done" as const },
+  { phase: "2", title: "Automatic differentiation", status: "done" as const },
+  { phase: "3", title: "Neural network layers & optimizers", status: "done" as const },
+  { phase: "3.5", title: "Convolution layers (CNN)", status: "done" as const },
+  { phase: "4", title: "Transformer & attention", status: "done" as const },
+  { phase: "5", title: ".sw model format", status: "done" as const },
+  { phase: "6", title: "JIT compiler & training engine", status: "done" as const },
+  { phase: "7", title: "GPU acceleration (CUDA)", status: "done" as const },
+  { phase: "8", title: "Data loading & examples", status: "done" as const },
+  { phase: "8.5", title: "Learning rate scheduling & checkpoints", status: "done" as const },
+  { phase: "8.6", title: "Performance optimizations", status: "done" as const },
+  { phase: "9", title: "Python bindings", status: "done" as const },
+  { phase: "9.5", title: "Quantization, ONNX & distributed training", status: "done" as const },
   { phase: "10", title: "JS/WASM & C/C++ bindings", status: "planned" as const },
 ]
 
@@ -30,7 +30,7 @@ export function Roadmap() {
             From runtime to universal bridge
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-pretty text-muted-foreground">
-            v0.1.0 shipped with tensors, autograd, CUDA GPU, neural networks, optimizers, JIT, quantization, ONNX, and Python bindings. Next up: JS/WASM and C/C++ bindings.
+            Shrew v0.1.0 is out with a complete deep learning stack. Next up: JS/WASM and C/C++ bindings to complete the universal bridge.
           </p>
         </div>
 
@@ -44,13 +44,12 @@ export function Roadmap() {
                 <div key={p.phase} className="group relative flex items-start gap-4 md:gap-5">
                   {/* Status icon */}
                   <div
-                    className={`relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border md:h-12 md:w-12 ${
-                      p.status === "done"
-                        ? "border-primary/50 bg-primary/10"
-                        : p.status === "planned"
-                          ? "border-border bg-secondary"
-                          : "border-border bg-card"
-                    }`}
+                    className={`relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border md:h-12 md:w-12 ${p.status === "done"
+                      ? "border-primary/50 bg-primary/10"
+                      : p.status === "planned"
+                        ? "border-border bg-secondary"
+                        : "border-border bg-card"
+                      }`}
                   >
                     {p.status === "done" ? (
                       <Check className="h-4 w-4 text-primary md:h-5 md:w-5" />
@@ -70,13 +69,12 @@ export function Roadmap() {
                       <span className="text-sm font-medium text-foreground">{p.title}</span>
                     </div>
                     <span
-                      className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${
-                        p.status === "done"
-                          ? "bg-primary/10 text-primary"
-                          : p.status === "planned"
-                            ? "bg-secondary text-muted-foreground"
-                            : "bg-secondary text-muted-foreground"
-                      }`}
+                      className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${p.status === "done"
+                        ? "bg-primary/10 text-primary"
+                        : p.status === "planned"
+                          ? "bg-secondary text-muted-foreground"
+                          : "bg-secondary text-muted-foreground"
+                        }`}
                     >
                       {p.status === "done" ? "Done" : p.status === "planned" ? "Planned" : "Future"}
                     </span>
