@@ -61,7 +61,7 @@ export function Navbar() {
           <Button asChild>
             <Link href="#get-started">Get Started</Link>
           </Button>
-        </div>
+        </div >
 
         <button
           className="text-foreground md:hidden"
@@ -70,7 +70,7 @@ export function Navbar() {
         >
           {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
-      </nav>
+      </nav >
 
       {mobileOpen && (
         <div className="border-t border-border/50 bg-background/95 backdrop-blur-xl md:hidden">
@@ -114,7 +114,8 @@ export function Navbar() {
             </li>
           </ul>
         </div>
-      )}
-    </header>
+      )
+      }
+    </header >
   )
 }
